@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Breaking_ball:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Breaking_ball_jar</output-path>
+    <root id="archive" name="Breaking_ball.jar">
+      <element id="module-output" name="Breaking_ball" />
+    </root>
+  </artifact>
+</component>
