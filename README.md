@@ -9,7 +9,7 @@ git clone git@github.com:Kvr-10/Breaking-Ball-Game.git
 <h3>Navigate to the Artifacts Directory:</h3>
 - After cloning the repository, navigate to the following path:
   ```
-  out/artifacts/Breaking_ball_jar
+  Breaking-Ball-Game/out/artifacts/Breaking_ball_jar/Breaking_ball.jar
   ```
 <h3>Run the Game:</h3>
 - Locate the <strong>Breaking ball.jar</strong> file in the directory.
@@ -22,7 +22,7 @@ Breaking Ball is a thrilling game where you control a paddle to break bricks by 
 <h2>Features</h2>
 <strong>Smooth and responsive controls.</strong><br>
 <strong>Increasing difficulty levels.</strong><br>
-<strong>Attractive graphics and sound effects.</strong>
+<strong>Attractive graphics.</strong>
 <h2>Contributing</h2>
 I welcome contributions to improve the game! Feel free to open issues and submit pull requests.
 
