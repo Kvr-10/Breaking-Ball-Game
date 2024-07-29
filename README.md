@@ -13,15 +13,15 @@ git clone git@github.com:Kvr-10/Breaking-Ball-Game.git
   ```
 <h3>Run the Game:</h3>
 - Locate the <strong>Breaking ball.jar</strong> file in the directory.
-- <strong>Double-click on `Breaking ball.jar` to start the game.</strong>
+- <strong>Double-click on `Breaking_ball.jar` to start the game.</strong>
 <h2>Prerequisites</h2>
 Ensure you have Java installed on your system. You can download and install the latest version of Java from the official website.
 <h2>Game Overview</h2>
 Breaking Ball is a thrilling game where you control a paddle to break bricks by bouncing a ball. The objective is to break all the bricks without letting the ball fall off the screen.
 
 <h2>Features</h2>
-<strong>Smooth and responsive controls.</strong>
-<strong>Increasing difficulty levels.</strong>
+<strong>Smooth and responsive controls.</strong><br>
+<strong>Increasing difficulty levels.</strong><br>
 <strong>Attractive graphics and sound effects.</strong>
 <h2>Contributing</h2>
 I welcome contributions to improve the game! Feel free to open issues and submit pull requests.
