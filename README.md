@@ -18,7 +18,8 @@ Locate the Breaking_ball.jar file in the directory.
 Double-click on Breaking_ball.jar to start the game.
 
 ## Alternative
-You can directly download the JAR file from the [Releases page](https://github.com/Kvr-10/Breaking-Ball-Game/releases/latest) and run it.
+You can directly download the JAR file from the [Releases page](https://github.com/Kvr-10/Breaking-Ball-Game/releases/latest) and run it.  
+Download [Breaking_ball](https://github.com/Kvr-10/Breaking-Ball-Game/releases/download/v1.0.0/Breaking_ball.jar) game.
 
 ## Prerequisites
 Ensure you have Java installed on your system. You can download and install the latest version of Java from the [official website](https://www.java.com/en/).
