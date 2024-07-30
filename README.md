@@ -1,31 +1,39 @@
-<h1>Breaking Ball Game</h1>
+# **Breaking Ball Game**
+
 Welcome to the Breaking Ball Game, an exciting and engaging game developed in Java!
 
-<h2>How to Run the Game</h2>
-<h3>Clone the Repository:</h3>
-```
+## How to Run the Game
+
+### Clone the Repository:
+```bash
 git clone git@github.com:Kvr-10/Breaking-Ball-Game.git
 ```
-<h3>Navigate to the Artifacts Directory:</h3>
-- After cloning the repository, navigate to the following path:
-  ```
-  Breaking-Ball-Game/out/artifacts/Breaking_ball_jar/Breaking_ball.jar
-  ```
-<h3>Run the Game:</h3>
-- Locate the <strong>Breaking ball.jar</strong> file in the directory.
-- <strong>Double-click on `Breaking_ball.jar` to start the game.</strong><br>
+### Navigate to the Artifacts Directory:
+After cloning the repository, navigate to the following path:
+```
+Breaking-Ball-Game/out/artifacts/Breaking_ball_jar/Breaking_ball.jar
+```
+### Run the Game:
+Locate the Breaking_ball.jar file in the directory.   
+Double-click on Breaking_ball.jar to start the game.
 
-<h2>Prerequisites</h2>
-Ensure you have Java installed on your system. You can download and install the latest version of Java from the official website.
-<h2>Game Overview</h2>
+## Alternative
+You can directly download the JAR file from the [Releases page](https://github.com/Kvr-10/Breaking-Ball-Game/releases/latest) and run it.  
+Download [Breaking_ball](https://github.com/Kvr-10/Breaking-Ball-Game/releases/download/v1.0.0/Breaking_ball.jar) game.
+
+## Prerequisites
+Ensure you have Java installed on your system. You can download and install the latest version of Java from the [official website](https://www.java.com/en/).
+
+## Game Overview
 Breaking Ball is a thrilling game where you control a paddle to break bricks by bouncing a ball. The objective is to break all the bricks without letting the ball fall off the screen.
 
-<h2>Features</h2>
-<strong>Smooth and responsive controls.</strong><br>
-<strong>Increasing difficulty levels.</strong><br>
-<strong>Attractive graphics.</strong>
-<h2>Contributing</h2>
+## Features
+  **Smooth and responsive controls.**  
+  **Increasing difficulty levels.**  
+  **Attractive graphics.** 
+
+## Contributing
 I welcome contributions to improve the game! Feel free to open issues and submit pull requests.
 
-<h2>Contact</h2>
+## Contact
 If you have any questions or feedback, please reach out to us at chamansinha9480@gmail.com.
