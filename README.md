@@ -27,10 +27,15 @@ Ensure you have Java installed on your system. You can download and install the 
 ## Game Overview
 Breaking Ball is a thrilling game where you control a paddle to break bricks by bouncing a ball. The objective is to break all the bricks without letting the ball fall off the screen.
 
+## Skills
+- **Java Programming**  
+- **GUI Development**  
+- **Event Handling**  
+
 ## Features
-  **Smooth and responsive controls.**  
-  **Increasing difficulty levels.**  
-  **Attractive graphics.** 
+ - **Smooth and responsive controls.**  
+ - **Increasing difficulty levels.**  
+ - **Attractive graphics.** 
 
 ## Contributing
 I welcome contributions to improve the game! Feel free to open issues and submit pull requests.
