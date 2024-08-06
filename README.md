@@ -2,6 +2,11 @@
 
 Welcome to the Breaking Ball Game, an exciting and engaging game developed in Java!
 
+## Game Overview
+Breaking Ball is a thrilling game where you control a paddle to break bricks by bouncing a ball.   
+The objective is to break all the bricks without letting the ball fall off the screen.  
+Once the level is completed, the difficulty of game increases.
+
 ## How to Run the Game
 
 ### Clone the Repository:
@@ -23,9 +28,6 @@ Download [Breaking_ball](https://github.com/Kvr-10/Breaking-Ball-Game/releases/d
 
 ## Prerequisites
 Ensure you have Java installed on your system. You can download and install the latest version of Java from the [official website](https://www.java.com/en/).
-
-## Game Overview
-Breaking Ball is a thrilling game where you control a paddle to break bricks by bouncing a ball. The objective is to break all the bricks without letting the ball fall off the screen.
 
 ## Skills
 - **Java Programming**  
