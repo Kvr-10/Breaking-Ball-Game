@@ -45,7 +45,7 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
     public void paint(Graphics g){
         //background
-        g.setColor(Color.black);
+        g.setColor(Color.white);
         g.fillRect(1,1,683,592);
 
         //Bricks (map)
@@ -53,36 +53,38 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
 
 
         //borders
-        g.setColor(Color.yellow);
+        g.setColor(Color.black);
         g.fillRect(0,0,3,592);
         g.fillRect(0,0,692,3);
         g.fillRect(683,0,3,592);
 
         //scores
-        g.setColor(Color.BLUE);
+        g.setColor(new Color(0xB8B80A));
         g.setFont(new Font("Algerian",Font.BOLD,25));
-        g.drawString(""+score,630,30);
+        g.drawString("Score: "+score,520,30);
 
         //paddle
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(playerX,550,100,8);
 
         //ball
-        g.setColor(Color.cyan);
+        g.setColor(new Color(0x373777));
         g.fillOval(ballposX,ballposY,20,20);
 
         if(totalBricks <= 0){
             play=false;
             ballXdir=0;
             ballYdir=0;
-            g.setColor(Color.pink);
-            g.setFont(new Font("Pacific",Font.BOLD,25));
-            g.drawString("Congratz! You Won!!",215,300);
-            g.drawString("Score:"+score,285,340);
+            g.setColor(new Color(0x0202CC));
+            g.setFont(new Font("Serif",Font.BOLD,25));
+            g.drawString("Congratulation! You Won!!",210,300);
+            g.drawString("Score:"+score,305,340);
 
 
-            g.setFont(new Font("Pacific",Font.BOLD,20));
-            g.drawString("Press Space to restart",240,380);
+            g.setFont(new Font("Serif",Font.BOLD,20));
+            g.drawString("Press Space for Level 1",265,380);
+            g.drawString("Press Ctrl for Level 2",270,405);
+            g.drawString("Press Shift for Level 3",267,430);
         }
 
         if(ballposY>570){
@@ -90,12 +92,14 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
             ballXdir=0;
             ballYdir=0;
             g.setColor(Color.red);
-            g.setFont(new Font("Algerian",Font.ITALIC,25));
-            g.drawString("Game Over!",265,300);
-            g.drawString("Score:"+score,285,340);
+            g.setFont(new Font("Serif",Font.ITALIC,25));
+            g.drawString("Game Over!",285,300);
+            g.drawString("Score:"+score,305,340);
 
-            g.setFont(new Font("Algerian",Font.ITALIC,20));
-            g.drawString("Press Space to restart",220,375);
+            g.setFont(new Font("Serif",Font.ITALIC,20));
+            g.drawString("Press Space for Level 1",255,375);
+            g.drawString("Press Ctrl for Level 2",267,405);
+            g.drawString("Press Shift for Level 3",263,435);
         }
         g.dispose();
     }
@@ -179,14 +183,42 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         if (e.getKeyCode()== KeyEvent.VK_SPACE){
             if(!play){
                 play =true;
-                ballposX = 520;
-                ballposY = 250;
+                ballposX = 370;
+                ballposY = 380;
                 ballXdir = -2;
-                ballYdir = -5;
+                ballYdir = -6;
+                playerX = 310;
+                score =0;
+                totalBricks=21;
+                map =new MapGenerator(3,7);
+                repaint();
+            }
+        }
+        else if (e.getKeyCode()== KeyEvent.VK_CONTROL){
+            if(!play){
+                play =true;
+                ballposX = 260;
+                ballposY = 350;
+                ballXdir = -2;
+                ballYdir = -6;
                 playerX = 310;
                 score =0;
                 totalBricks=32;
                 map =new MapGenerator(4,8);
+                repaint();
+            }
+        }
+        else if (e.getKeyCode()== KeyEvent.VK_SHIFT){
+            if(!play){
+                play =true;
+                ballposX = 490;
+                ballposY = 300;
+                ballXdir = -3;
+                ballYdir = -6;
+                playerX = 310;
+                score =0;
+                totalBricks=50;
+                map =new MapGenerator(5,10);
                 repaint();
             }
         }

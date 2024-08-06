@@ -88,14 +88,22 @@ section {
     text-align: center;
 }
 
-#about, #instructions, #download, #about-me {
+#about,#about2  #instructions, #download, #about-me {
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     border-radius: 5px;
 }
 
-#about {
+#about,#about2  {
     background-color: #e9e9e9;
+}
+#about2 {
+    text-align: center;
+}
+
+#about2 ul {
+    display: inline-block; /* Keeps the list items centered */
+    text-align: left; /* Aligns the list items to the left */
 }
 .alternative-section {
     background-color: #e9e9e9; /* Change this to your desired color */
