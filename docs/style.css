@@ -19,8 +19,8 @@ body {
 header {
     text-align: center;
     padding: 20px;
-    background-color: #1abc9c;
-    color: #063d25;
+    background-color: #30d9b7;
+    color: #07472c;
 }
 
 code {
@@ -40,10 +40,11 @@ code {
 .header-img {
     width: 100px;
     height: auto;
-    border-radius: 50%;
+    border-radius: 30%;
     margin-bottom: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    object-fit: cover;
 }
 
 .header-img:hover {
