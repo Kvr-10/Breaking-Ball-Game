@@ -1,27 +1,36 @@
+meta[name="viewport"] {
+    content: "width=device-width, initial-scale=1.0";
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: #f0f2f5;
 }
+
 .container {
     max-width: 1000px; 
     margin: 0 auto; 
     padding: 0 15px; 
     font-weight: bold;
 }
+
 header {
     text-align: center;
     padding: 20px;
-    background-color: #00c1db; 
+    background-color: #1abc9c;
+    color: #063d25;
 }
+
 code {
-    background-color: #f4f4f4;
+    background-color: #eaeaea;
     border-radius: 3px;
     padding: 2px 5px;
     font-size: 1em;
     overflow-wrap: break-word;
 }
+
 .header-content {
     display: flex;
     flex-direction: column; 
@@ -31,14 +40,15 @@ code {
 .header-img {
     width: 100px;
     height: auto;
-    border-radius: 30%;
+    border-radius: 50%;
     margin-bottom: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .header-img:hover {
     transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .marquee-container {
@@ -52,11 +62,10 @@ code {
     display: inline-block; 
     white-space: nowrap; 
     padding-left: 100%; 
-    animation: marquee 20s linear infinite, colorChange 5s linear infinite; 
-    font-size: 1.2em; 
-    font-weight:bold;
+    animation: marquee 20s linear infinite, colorChange 6s linear infinite; 
+    font-size: 1.3em; 
+    font-weight: bold;
 }
-
 
 @keyframes marquee {
     0% {
@@ -68,18 +77,9 @@ code {
 }
 
 @keyframes colorChange {
-    0% { color: #e3764b; } 
-    50% { color: #34870a9b; }
-    70% { color: #ef264b; } 
-    100% { color: #e3764b; } 
-}
-
-
-
-
-header p {
-    font-size: 1.2em;
-    font-weight: bold;
+    0% { color: #e67e22; }
+    50% { color: #2e796a; }
+    100% { color: #e67e22; }
 }
 
 section {
@@ -88,71 +88,73 @@ section {
     text-align: center;
 }
 
-#about,#about2  #instructions, #download, #about-me {
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+#about, #about2, #instructions, #download, #about-me {
+    background-color: #ffffff;
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
     border-radius: 5px;
 }
 
-#about,#about2  {
-    background-color: #e9e9e9;
+#about, #about2 {
+    background-color: #f9f9f9;
 }
+
 #about2 {
     text-align: center;
 }
 
 #about2 ul {
-    display: inline-block; /* Keeps the list items centered */
-    text-align: left; /* Aligns the list items to the left */
+    display: inline-block;
+    text-align: left;
 }
+
 .alternative-section {
-    background-color: #e9e9e9; /* Change this to your desired color */
+    background-color: #f9f9f9;
     padding: 20px;
     border-radius: 5px;
     margin-top: 20px;
 }
 
 #instructions, #download, #about-me {
-    background-color: #e9e9e9;
+    background-color: #f9f9f9;
 }
 
 h2 {
-    color: #333;
+    color: #2c3e50;
 }
 
 a {
     display: inline-block;
     padding: 10px 16px;
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
     border-radius: 5px;
     margin-top: 10px;
+    font-weight: bold;
 }
 
 .download-link, .repo-link {
-    background-color: #0056b3; 
+    background-color: #37bf80;
 }
 
 .download-link:hover, .repo-link:hover {
-    background-color: #003d80; 
+    background-color: #07945c;
 }
 
 .repo-link {
     font-size: 1.0em; 
 }
 
-
 #run-game {
-    background-color: #e9e9e9;
+    background-color: #f9f9f9;
     padding: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 15px rgba(0,0,0,0.15);
     margin: 20px 0;
 }
 
 #run-game h2 {
-    color: #333;
-    font-size: 1.5em;
+    color: #2c3e50;
+    font-size: 1.6em;
     margin-bottom: 15px;
 }
 
@@ -163,7 +165,7 @@ a {
 }
 
 .step {
-    background-color: #fff;
+    background-color: #ffffff;
     padding: 15px;
     border-radius: 5px;
     font-size: 1.1em;
@@ -172,8 +174,8 @@ a {
 
 .step h3 {
     margin-top: 0;
-    font-size: 1.2em;
-    color: #333;
+    font-size: 1.3em;
+    color: #2c3e50;
 }
 
 .step p {
@@ -183,34 +185,98 @@ a {
 
 #run-game code {
     display: block;
-    background-color: #f0f0f0;
+    background-color: #fafafa;
     padding: 10px;
     border-radius: 5px;
-    font-family: monospace;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 #run-game a.download-link {
     display: inline-block;
     margin-top: 15px;
-    background-color: #0056b3;
-    color: #fff;
+    background-color: #3498db;
+    color: #ffffff;
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
 }
 
 #run-game a.download-link:hover {
-    background-color: #003d80;
+    background-color: #2980b9;
 }
 
-
-
 footer {
-    background-color: rgb(79, 196, 243); 
+    background-color: #1abc9c;
     text-align: center;
     padding: 10px;
     position: relative; 
     bottom: 0; 
     width: 100%; 
-    color: #fff; 
+    color: #ffffff; 
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    header {
+        padding: 15px;
+    }
+
+    .header-img {
+        width: 80px;
+    }
+
+    .marquee {
+        font-size: 1.1em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    a {
+        padding: 8px 14px;
+        font-size: 0.9em;
+    }
+
+    .steps {
+        gap: 15px;
+    }
+
+    .step {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
+
+    .header-img {
+        width: 60px;
+    }
+
+    .marquee {
+        font-size: 1em;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    a {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+
+    .steps {
+        gap: 10px;
+    }
+
+    .step {
+        font-size: 0.9em;
+    }
 }
