@@ -112,12 +112,8 @@ a {
 .file {
     color: #22863a;
     font-weight: bold;
-    text-decoration: underline;
 }
 
-a:hover {
-    text-decoration: underline;
-}
 
 ul {
     list-style: none;
@@ -203,7 +199,7 @@ ul li strong {
     background: #e9ecef;
     padding: 5px;
     border-radius: 4px;
-        display: block; 
+    display: block; 
     overflow-wrap: break-word; 
     word-break: break-all;
 }
