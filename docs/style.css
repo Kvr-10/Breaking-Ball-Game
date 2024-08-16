@@ -158,6 +158,12 @@ ul li strong {
 #about-me {
     text-align: center;
 }
+.about-me-img {
+    display: block;
+    margin: 20px auto 0;
+    max-width: 130px;
+    height: auto;
+}
 
 #about-me h2 {
     text-align: left;
