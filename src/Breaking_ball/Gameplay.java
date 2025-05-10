@@ -1,13 +1,3 @@
-/*
-x=0 -------> +
-y=0
-|
-|
-v
-+
-
-*/
-
 package Breaking_ball;
 
 import javax.swing.*;
@@ -18,24 +8,28 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class Gameplay extends JPanel implements KeyListener, ActionListener {
-    private boolean play= false;
-    private int score=0;
-
-    private int totalBricks=21;
-
+    private boolean play = true; // Changed to true so paddle works immediately
+    private int score = 0;
+    private int totalBricks = 21;
     private Timer timer;
-    private int delay=3; // speed of ball
-
-    private int playerX=310;
-
-    private int ballposX=320;
-    private int ballposY=350;
-    private int ballXdir= -2; // movement of ball. example 120-1,119-1 i.e going up
-    private int ballYdir= -6; // same. We can control games speed too.
-
+    private int delay = 8;
+    private int playerX = 310;
+    private int ballposX = 320;
+    private int ballposY = 350;
+    private int ballXdir = -2;
+    private int ballYdir = -6;
+    private Color ballColor = new Color(0x373777);
     private MapGenerator map;
-    public Gameplay (){
-        map =new MapGenerator(3,7);
+
+    // Movement variables
+    private boolean rightPressed = false;
+    private boolean leftPressed = false;
+    private final int PADDLE_SPEED = 8;
+    private final int PADDLE_ACCEL = 2;
+    private int currentSpeed = 0;
+
+    public Gameplay() {
+        map = new MapGenerator(3, 7);
         addKeyListener(this);
         setFocusable(true);
         setFocusTraversalKeysEnabled(false);
@@ -43,199 +37,200 @@ public class Gameplay extends JPanel implements KeyListener, ActionListener {
         timer.start();
     }
 
-    public void paint(Graphics g){
-        //background
+    public void paint(Graphics g) {
+        // background
         g.setColor(Color.white);
-        g.fillRect(1,1,683,592);
+        g.fillRect(1, 1, 683, 592);
 
-        //Bricks (map)
-        map.draw((Graphics2D)g);
+        // Bricks (map)
+        map.draw((Graphics2D) g);
 
-
-        //borders
+        // borders
         g.setColor(Color.black);
-        g.fillRect(0,0,3,592);
-        g.fillRect(0,0,692,3);
-        g.fillRect(683,0,3,592);
+        g.fillRect(0, 0, 3, 592);
+        g.fillRect(0, 0, 692, 3);
+        g.fillRect(683, 0, 3, 592);
 
-        //scores
+        // scores
         g.setColor(new Color(0xB8B80A));
-        g.setFont(new Font("Algerian",Font.BOLD,25));
-        g.drawString("Score: "+score,520,30);
+        g.setFont(new Font("Algerian", Font.BOLD, 25));
+        g.drawString("Score: " + score, 520, 30);
 
-        //paddle
+        // paddle
         g.setColor(Color.darkGray);
-        g.fillRect(playerX,550,100,8);
+        g.fillRect(playerX, 550, 100, 8);
 
-        //ball
-        g.setColor(new Color(0x373777));
-        g.fillOval(ballposX,ballposY,20,20);
+        // ball
+        g.setColor(ballColor);
+        g.fillOval(ballposX, ballposY, 20, 20);
 
-        if(totalBricks <= 0){
-            play=false;
-            ballXdir=0;
-            ballYdir=0;
+        if (totalBricks <= 0) {
+            play = false;
+            ballXdir = 0;
+            ballYdir = 0;
             g.setColor(new Color(0x0202CC));
-            g.setFont(new Font("Serif",Font.BOLD,25));
-            g.drawString("Congratulation! You Won!!",210,300);
-            g.drawString("Score:"+score,305,340);
+            g.setFont(new Font("Serif", Font.BOLD, 25));
+            g.drawString("Congratulation! You Won!!", 210, 300);
+            g.drawString("Score:" + score, 305, 340);
 
-
-            g.setFont(new Font("Serif",Font.BOLD,20));
-            g.drawString("Press Space for Level 1",265,380);
-            g.drawString("Press Ctrl for Level 2",270,405);
-            g.drawString("Press Shift for Level 3",267,430);
+            g.setFont(new Font("Serif", Font.BOLD, 20));
+            g.drawString("Press Space for Level 1", 265, 380);
+            g.drawString("Press Ctrl for Level 2", 270, 405);
+            g.drawString("Press Shift for Level 3", 267, 430);
         }
 
-        if(ballposY>570){
-            play=false;
-            ballXdir=0;
-            ballYdir=0;
+        if (ballposY > 570) {
+            play = false;
+            ballXdir = 0;
+            ballYdir = 0;
             g.setColor(Color.red);
-            g.setFont(new Font("Serif",Font.ITALIC,25));
-            g.drawString("Game Over!",285,300);
-            g.drawString("Score:"+score,305,340);
+            g.setFont(new Font("Serif", Font.ITALIC, 25));
+            g.drawString("Game Over!", 285, 300);
+            g.drawString("Score:" + score, 305, 340);
 
-            g.setFont(new Font("Serif",Font.ITALIC,20));
-            g.drawString("Press Space for Level 1",255,375);
-            g.drawString("Press Ctrl for Level 2",267,405);
-            g.drawString("Press Shift for Level 3",263,435);
+            g.setFont(new Font("Serif", Font.ITALIC, 20));
+            g.drawString("Press Space for Level 1", 255, 375);
+            g.drawString("Press Ctrl for Level 2", 267, 405);
+            g.drawString("Press Shift for Level 3", 263, 435);
         }
-        g.dispose();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         timer.start();
-        if(play){
-            if(new Rectangle(ballposX,ballposY,20,20).intersects(new Rectangle(playerX,550,100,8)))
-            {
-                ballYdir=-ballYdir;
+
+        // Paddle movement works regardless of game state
+        if (rightPressed) {
+            currentSpeed = Math.min(currentSpeed + PADDLE_ACCEL, PADDLE_SPEED);
+        }
+        else if (leftPressed) {
+            currentSpeed = Math.max(currentSpeed - PADDLE_ACCEL, -PADDLE_SPEED);
+        }
+        else {
+            // Decelerate when no key is pressed
+            if (currentSpeed > 0) {
+                currentSpeed = Math.max(currentSpeed - PADDLE_ACCEL, 0);
+            } else if (currentSpeed < 0) {
+                currentSpeed = Math.min(currentSpeed + PADDLE_ACCEL, 0);
+            }
+        }
+
+        // Apply movement
+        playerX += currentSpeed;
+
+        // Keep paddle within bounds
+        playerX = Math.max(10, Math.min(playerX, 580));
+
+        // Only process ball physics if game is active
+        if (play) {
+            // Ball-paddle collision
+            if (new Rectangle(ballposX, ballposY, 20, 20).intersects(new Rectangle(playerX, 550, 100, 8))) {
+                ballYdir = -ballYdir;
+                float hitPosition = (ballposX - playerX) / 100.0f;
+                ballXdir = (int)((hitPosition - 0.5f) * 8);
             }
 
-          A:  for(int i=0;i<map.map.length;i++){
-                for (int j=0;j<map.map[0].length;j++){
-                    if(map.map[i][j]>0){
-                        int brickX=j* map.brickWidth +80;
-                        int brickY=i* map.brickHeight +50;
-                        int brickWidth= map.brickWidth;
-                        int brickHeight= map.brickHeight;
+            // Brick collisions
+            A: for (int i = 0; i < map.map.length; i++) {
+                for (int j = 0; j < map.map[0].length; j++) {
+                    if (map.map[i][j] > 0) {
+                        int brickX = j * map.brickWidth + 80;
+                        int brickY = i * map.brickHeight + 50;
+                        int brickWidth = map.brickWidth;
+                        int brickHeight = map.brickHeight;
 
-                        Rectangle rect =new Rectangle(brickX,brickY,brickWidth,brickHeight);
-                        Rectangle ballRect =new Rectangle(ballposX,ballposY,20,20);
-                        Rectangle brickRect =rect;
+                        Rectangle rect = new Rectangle(brickX, brickY, brickWidth, brickHeight);
+                        Rectangle ballRect = new Rectangle(ballposX, ballposY, 20, 20);
+                        Rectangle brickRect = rect;
 
-                        if(ballRect.intersects(brickRect)){
-                            map.setBrickValue(0,i,j);
+                        if (ballRect.intersects(brickRect)) {
+                            ballColor = map.getBrickColor(i, j);
+                            map.setBrickValue(0, i, j);
                             totalBricks--;
-                            score+=5;
+                            score += 5;
 
-                            if(ballposX+19<=brickRect.x||ballposX +1 >= brickRect.x+brickRect.width){
-                                ballXdir=-ballXdir;
-                            }else {
-                                ballYdir=-ballYdir;
+                            if (ballposX + 19 <= brickRect.x || ballposX + 1 >= brickRect.x + brickRect.width) {
+                                ballXdir = -ballXdir;
+                            } else {
+                                ballYdir = -ballYdir;
                             }
-                            break A; // break Label A so that it leaves the outer loop
+                            break A;
                         }
                     }
                 }
             }
 
-            ballposX +=ballXdir;
-            ballposY +=ballYdir;
-            if(ballposX <0){
-                ballXdir= -ballXdir;
+            // Ball movement
+            ballposX += ballXdir;
+            ballposY += ballYdir;
+
+            // Wall collisions
+            if (ballposX < 0) {
+                ballXdir = -ballXdir;
             }
-            if(ballposY <0){
-                ballYdir= -ballYdir;
+            if (ballposY < 0) {
+                ballYdir = -ballYdir;
             }
-            if(ballposX >665){
-                ballXdir= -ballXdir;
+            if (ballposX > 665) {
+                ballXdir = -ballXdir;
             }
         }
-
         repaint();
     }
 
     @Override
-    public void keyTyped(KeyEvent e) { } // Not using them
-    @Override
-    public void keyReleased(KeyEvent e) { }
+    public void keyTyped(KeyEvent e) {}
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-        if(playerX>580){
-            playerX=580;
+        int key = e.getKeyCode();
+        if (key == KeyEvent.VK_RIGHT) {
+            rightPressed = true;
         }
-        else {
-            moveRight();
+        if (key == KeyEvent.VK_LEFT) {
+            leftPressed = true;
         }
-    }
-        if(e.getKeyCode()== KeyEvent.VK_LEFT){
-        if(playerX<10){
-            playerX=10;
-        }
-            else{
-            moveLeft();
+        if (key == KeyEvent.VK_SPACE) {
+            if (!play) {
+                resetGame(3, 7, 21);
+            }
+        } else if (key == KeyEvent.VK_CONTROL) {
+            if (!play) {
+                resetGame(4, 8, 32);
+            }
+        } else if (key == KeyEvent.VK_SHIFT) {
+            if (!play) {
+                resetGame(5, 10, 50);
             }
         }
-        if (e.getKeyCode()== KeyEvent.VK_SPACE){
-            if(!play){
-                play =true;
-                ballposX = 370;
-                ballposY = 380;
-                ballXdir = -2;
-                ballYdir = -6;
-                playerX = 310;
-                score =0;
-                totalBricks=21;
-                map =new MapGenerator(3,7);
-                repaint();
-            }
-        }
-        else if (e.getKeyCode()== KeyEvent.VK_CONTROL){
-            if(!play){
-                play =true;
-                ballposX = 260;
-                ballposY = 350;
-                ballXdir = -2;
-                ballYdir = -6;
-                playerX = 310;
-                score =0;
-                totalBricks=32;
-                map =new MapGenerator(4,8);
-                repaint();
-            }
-        }
-        else if (e.getKeyCode()== KeyEvent.VK_SHIFT){
-            if(!play){
-                play =true;
-                ballposX = 490;
-                ballposY = 300;
-                ballXdir = -3;
-                ballYdir = -6;
-                playerX = 310;
-                score =0;
-                totalBricks=50;
-                map =new MapGenerator(5,10);
-                repaint();
-            }
-        }
-        if(e.getKeyCode() == KeyEvent.VK_END){
-            play=false;
+        if (key == KeyEvent.VK_END) {
+            play = !play; // Toggle pause
         }
     }
 
-    public void moveRight(){
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int key = e.getKeyCode();
+        if (key == KeyEvent.VK_RIGHT) {
+            rightPressed = false;
+        }
+        if (key == KeyEvent.VK_LEFT) {
+            leftPressed = false;
+        }
+    }
+
+    private void resetGame(int rows, int cols, int bricks) {
         play = true;
-        playerX+=20;
+        ballposX = 320;
+        ballposY = 350;
+        ballXdir = -2;
+        ballYdir = -6;
+        playerX = 310;
+        score = 0;
+        totalBricks = bricks;
+        map = new MapGenerator(rows, cols);
+        ballColor = new Color(0x373777);
+        currentSpeed = 0;
+        repaint();
     }
-
-    public void moveLeft(){
-        play=true;
-        playerX-=20;
-    }
-
-
 }
